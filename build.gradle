@@ -1,0 +1,65 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group 'com.cyq'
+version '1.0.0'
+
+sourceCompatibility = '1.8'
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    jcenter { url "http://jcenter.bintray.com" }
+    mavenCentral()
+}
+
+ext {
+    mybatisplusVersion = '3.3.2'
+    druidVersion = '1.1.21'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile 'org.springframework.boot:spring-boot-starter-undertow'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'org.springframework.boot:spring-boot-starter-activemq'
+    compile 'org.springframework.boot:spring-boot-starter-freemarker'
+    compile 'org.springframework.boot:spring-boot-starter-data-redis'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
+    compile 'org.springframework.session:spring-session-data-redis:2.2.3.RELEASE'
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    compile "com.alibaba:druid-spring-boot-starter:${druidVersion}"
+    compile "com.baomidou:mybatis-plus-boot-starter:${mybatisplusVersion}"
+    compile "com.baomidou:mybatis-plus-generator:${mybatisplusVersion}"
+
+    compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.10.2'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.66'
+    // 开启 activemq 连接池必须引入
+    compile 'org.messaginghub:pooled-jms:1.1.1'
+    // Apache Commons
+    compile 'org.apache.httpcomponents:httpclient:4.5.12'
+    compile 'org.apache.httpcomponents:httpmime:4.5.12'
+    compile 'org.apache.commons:commons-lang3:3.8.1'
+    compile 'commons-io:commons-io:2.6'
+    compile 'commons-fileupload:commons-fileupload:1.4'
+
+    compile 'com.google.guava:guava:29.0-jre'
+    compile group: 'org.redisson', name: 'redisson', version: '3.12.0'
+    // okhttp3
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
+    compile group: 'org.t-io', name: 'tio-websocket-server', version: '3.6.1.v20200512-RELEASE'
+    compile group: 'cn.hutool', name: 'hutool-http', version: '5.2.0'
+    compile group: 'org.lionsoul', name: 'ip2region', version: '1.7.2'
+
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+}
